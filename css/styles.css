@@ -1,0 +1,192 @@
+#transcriptWrapper{
+    width:100%;
+    height:100%;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.document{
+    float:left;
+    width:55%;
+    margin-right:25px;
+}
+
+.transcript{
+    float:left;
+    width:40%;
+    margin-bottom:5px;
+
+}
+
+.theFrame iframe {
+    width:100%;
+    height:810px;
+}
+
+.theFrame {
+    height:100%;
+}
+
+.theFrame .transcriptFrameHalf{
+    width:100%;
+    height:400px;
+}
+
+.diff{
+    height:410px;
+    overflow: scroll;
+    width:100%;
+}
+
+#diffFrame{
+    height:410px;
+    width:100%;
+    border:1px solid grey;
+    overflow: scroll;
+
+
+}
+
+#transciptText {
+    height:810px;
+    width:100%;
+}
+
+.taskWrapper{
+    max-width:700px;
+    width:100%;
+    float:left;
+    padding:15px;
+}
+
+.topTasks{
+    width:100%;
+    height:190px;
+    clear:both;
+    text-align:center;
+}
+
+.taskA{
+    width:45%;
+    float:left;
+    border:1px solid #C2C2C2;
+    border-radius: 15px;
+    height:160px;
+    margin:10px 0px 0px 10px;
+}
+
+.taskB{
+    width:45%;
+    float:right;
+    border:1px solid #C2C2C2;
+    border-radius: 15px;
+    height:160px;
+    margin:10px 10px 0px 0px;
+}
+
+.finalTask{
+    width:97%;
+    height:150px;
+    clear:both;
+    border:1px solid #C2C2C2;
+    margin:0px 10px 10px 10px;
+    border-radius: 15px;
+    text-align:center;
+}
+
+.roundWrap{
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.red{
+    color:red;
+    font-weight:bold;
+}
+
+.green{
+	color:green;
+	font-weight:bold;
+}
+
+.wide{
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+label{
+    font-family:Verdana,Arial,Helvetica,sans-serif !important;
+    color:#585858 !important;
+}
+
+#newForm #newAssignment h3{
+    margin-top:30px;
+}
+
+#processing{
+    margin:0 auto;
+    text-align:center;
+}
+
+.pageControl{
+    margin-top:10px;
+    margin-bottom:10px;
+    clear:both;
+}
+
+.pageControl p, .pageControl button{
+    display:inline;
+    width:80px;
+    font-weight: bold;
+}
+
+.transcriptForm{
+    margin-top:30px;
+
+}
+
+#notice{
+    color:green;
+    font-style:italic;
+}
+
+.replace, .equal, .delete{
+    border:1px solid grey;
+}
+
+#gradingForm{
+    width:500px;
+    clear:both;
+    border:1px solid grey;
+    margin:20px 0px 20px 0px;
+    padding:10px;
+}
+
+#okButton{
+    width:50px;
+}
+
+.centre{
+    text-align:center;
+}
+
+.ui-dialog{
+    border:1px solid grey;
+}
+
+/*Top of the Page title and student nav*/
+#titleWrapper{
+    clear:both;
+    height:75px;
+    width:100%;
+}
+
+#mainTitle{
+    float:left;
+}
+
+#studentNav{
+    float:right;
+    margin-right:70px;
+    margin-top:16px;
+}
