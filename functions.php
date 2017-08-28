@@ -166,11 +166,11 @@ function defaultHead($title){
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<meta name="robots" content="index,follow" />
-		<script src="../js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
-		<script src="../js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.11.4/jquery-ui.min.css" />
-		<link rel="stylesheet" type="text/css" href="../css/styles.css" />
-		<link rel="stylesheet" type="text/css" href="../css/legacy_one_file.css" />
+		<script src="js/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+		<script src="js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="js/jquery-ui-1.11.4/jquery-ui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="css/legacy_one_file.css" />
 		<!--Initalize Datatables-->
 		<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
@@ -425,9 +425,9 @@ function diffC($fileName, $page, $startPage){
     $return .= '<div id="diffoutput"> </div>';
 
     //JSDiff Includes and initialization
-    $return .= '<link rel="stylesheet" type="text/css" href="../js/jsdifflib/diffview.css"/>
-                <script type="text/javascript" src="../js/jsdifflib/diffview.js"></script>
-                <script type="text/javascript" src="../js/jsdifflib/difflib.js"></script>
+    $return .= '<link rel="stylesheet" type="text/css" href="js/jsdifflib/diffview.css"/>
+                <script type="text/javascript" src="js/jsdifflib/diffview.js"></script>
+                <script type="text/javascript" src="js/jsdifflib/difflib.js"></script>
 
                 <script type="text/javascript">
 
@@ -477,7 +477,7 @@ function diffC($fileName, $page, $startPage){
 function pdfSplit($urls, $className){
 
     //Require the pdf manipulation library
-    require_once("../pdftk-toolkit/vendor/autoload.php");
+    require_once("pdftk-toolkit/vendor/autoload.php");
 
     //Count for each foreach pass
     $count = 0;
