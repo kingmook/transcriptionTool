@@ -13,8 +13,8 @@ This open module can be added to any modern Learning Management Systems (LMS) th
  * Create two folders writable by apache (or whichever user you use) called pdfs & tmp 
 
 ## Built With
- * easyLTI [https://github.com/kingmook/easyLTI]
- * ckeditor [https://github.com/ckeditor]
- * jquery [https://github.com/jquery/jquery]
- * jsdifflib [https://github.com/cemerick/jsdifflib]
- * pdftk [https://github.com/ericmason/pdftk]
+ * [easyLTI](https://github.com/kingmook/easyLTI)
+ * [ckeditor](https://github.com/ckeditor)
+ * [jquery](https://github.com/jquery/jquery)
+ * [jsdifflib](https://github.com/cemerick/jsdifflib)
+ * [pdftk](https://github.com/ericmason/pdftk) 
