@@ -3,10 +3,10 @@
 require_once("functions.php");
 
 //Include required functions for pdf manipulation
-require_once("../pdftk-toolkit/vendor/autoload.php");
+require_once("pdftk-toolkit/vendor/autoload.php");
 
 //include the LTI Library
-require_once("../LTI/functions/easyLTI.php");
+require_once("LTI/functions/easyLTI.php");
 
 //Get ready for sessions
 session_start();
@@ -18,7 +18,7 @@ defaultHead("Dashboard");
 $ltiObject = ltiSessionCheck();
 
 //Include the ckeditor support code
-echo '<script src="../js/ckeditor/ckeditor.js"></script>';
+echo '<script src="js/ckeditor/ckeditor.js"></script>';
 
 //If it's an instructor coming in, we need the student's sid not the instructors sid
 if ($_SESSION['role'] == "Instructor"){
