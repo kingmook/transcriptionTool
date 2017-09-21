@@ -6,10 +6,10 @@
 require_once("functions.php");
 
 //Include required functions for pdf manipulation
-require_once("../pdftk-toolkit/vendor/autoload.php");
+require_once("pdftk-toolkit/vendor/autoload.php");
 
 //include the LTI Library
-require_once("../LTI/functions/easyLTI.php");	
+require_once("LTI/functions/easyLTI.php");	
 
 //Get ready for sessions
 session_start();

@@ -3,10 +3,10 @@
 /* MBrousseau July 2015 */
 
 //Bring in the IMS Basic LTI Functions
-require_once("../LTI/ims-blti/blti.php");
+require_once("LTI/ims-blti/blti.php");
 
 //Bring in the LTI and DB info
-require_once("../LTI/config.php");
+require_once("LTI/config.php");
 
 //connect to LTI | Returns LTI Data or FALSE
 function connectLTI()

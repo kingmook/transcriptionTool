@@ -12,7 +12,7 @@ require_once("functions.php");
 $ltiObject = ltiSessionCheck();
 
 //Include required functions for pdf manipulation
-require_once("../pdftk-toolkit/vendor/autoload.php");
+require_once("pdftk-toolkit/vendor/autoload.php");
 
 //Default head builder
 defaultHead("Dashboard");

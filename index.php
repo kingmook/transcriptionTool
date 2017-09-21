@@ -9,10 +9,10 @@ ini_set('display_errors', 1);
 require_once("functions.php");
 
 //Include required functions for pdf manipulation
-require_once("../pdftk-toolkit/vendor/autoload.php");
+require_once("pdftk-toolkit/vendor/autoload.php");
 
 //include the LTI Library
-require_once("../LTI/functions/easyLTI.php");	
+require_once("LTI/functions/easyLTI.php");	
 
 //Get ready for sessions
 session_start();
@@ -25,8 +25,3 @@ $_SESSION['cid'] = checkCourse($ltiObject);
 
 //Minimum role allowed to view page (student, ta, or instructor)
 authLevel("student", $ltiObject->info['ext_sakai_role'], "forward", $ltiObject);
-
-
-
-
-
