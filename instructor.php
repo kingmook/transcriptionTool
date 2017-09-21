@@ -33,7 +33,7 @@ defaultHead("Dashboard");
 </script>
 
 <!--Include addInput form script-->
-<script src="../js/addInput.js" type="application/javascript"></script>
+<script src="js/addInput.js" type="application/javascript"></script>
 
 <!--JQuery UI Modal on submit new assignment-->
 <script type="application/javascript">
@@ -196,7 +196,7 @@ echo '
             <p>Please be patient.</p>
             <br /><br />
             <div id="processing">
-                <img src="../img/loading_transparent.gif">
+                <img src="img/loading_transparent.gif">
                 <p class="red">Processing...</p>
             </div>
         </div>
