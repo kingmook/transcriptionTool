@@ -17,6 +17,8 @@ defaultHead("Dashboard");
 //Grab our user info via LTI or built session, die if no LTI or session
 $ltiObject = ltiSessionCheck();
 
+//Minimum role allowed to view page (student, ta, or instructor)
+authLevel("instructor", $ltiObject->info['ext_sakai_role'], false, $ltiObject);
 
 //Create a DB Handle
 $dbHandle = dbConnection();

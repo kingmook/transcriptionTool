@@ -40,9 +40,9 @@ function authLevel($minRole, $userRole, $forward, $object){
     $dbHandle = dbConnection();
 
     //Check if the user is already there
-    $statement = 'SELECT `sid` FROM `userInfo` WHERE `fullName` = ?';
+    $statement = 'SELECT `sid` FROM `userInfo` WHERE `campusId` = ?';
     $exec = $dbHandle->prepare($statement);
-    $exec->execute(array($object->info['lis_person_name_full']));
+    $exec->execute(array($object->info['lis_person_sourcedid']));
     $sidResult = $exec->fetch(PDO::FETCH_ASSOC);
 
     //If the user isn't in the DB put them in there

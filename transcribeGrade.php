@@ -17,17 +17,20 @@ defaultHead("Dashboard");
 //Grab our user info via LTI or built session, die if no LTI or session
 $ltiObject = ltiSessionCheck();
 
+//Minimum role allowed to view page (student, ta, or instructor)
+authLevel("instructor", $ltiObject->info['ext_sakai_role'], false, $ltiObject);
+
 //Include the ckeditor support code
 echo '<script src="js/ckeditor/ckeditor.js"></script>';
 
 //If it's an instructor coming in, we need the student's sid not the instructors sid
-if ($_SESSION['role'] == "Instructor"){
+if ($_SESSION['role'] != "Student"){
 	$_SESSION['sid'] = $_POST['studentGrade'];	
 }	
 
-//Only assign pages if the user is a student (Don't assign to non-students)
+//Only assign pages if the user is a student
 //Assign required number of unique pages to student if not already done for the specific task
-//if(!$pages = assignedPages($_POST['assignmentAid'], $_SESSION['sid'], $_POST['task'], $_SESSION['role'])){echo "No more pages to assign. Please contact the course Instructor.";}
+if(!$pages = assignedPages($_POST['assignmentAid'], $_SESSION['sid'], $_POST['task'], $_SESSION['role'])){echo "No more pages to assign. Please contact the course Instructor.";}
 
 
 //Default starting pages
@@ -75,6 +78,8 @@ if($_SESSION['role'] == "Student"){
 			die;
 		}
 	}
+
+
 
     $task = 'task'.$_POST['task'].'Info';
 
@@ -167,7 +172,7 @@ echo'
             //Print out the iFrame for Task A & B
             if($_POST['task']=="A" || $_POST['task'] == "B") {
 
-                echo '<iframe id="transcriptFrame" height="100" width="100" src="https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
+                echo '<iframe id="transcriptFrame" height="100" width="100" src="pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
             }
             elseif($_POST['task'] == "C"){
                 //Output the initial diff between transcripts for the appropriate page
@@ -185,7 +190,7 @@ echo'
 
                 echo '</div>';
 
-                echo '<iframe id="transcriptFrame" class="transcriptFrameHalf" height="50" width="100" src="https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
+                echo '<iframe id="transcriptFrame" class="transcriptFrameHalf" height="50" width="100" src="pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
 
             }
 
@@ -266,45 +271,16 @@ echo'
 
         </div>';
 
-        //If the transcript has been submitted it can no longer be edited, make the ckeditor readonly
-        if($transcriptComplete['completed'] == "FALSE") {
+        //Make the ckeditor readonly. We don't want to make changes.
+		echo '
+		<!-- Initialize the ckeditor textarea-->
+		<script>
+			// Replace the <textarea id="editor1"> with a CKEditor
+			// instance, using default configuration.
+			CKEDITOR.config.customConfig = \'config.js\';
+			CKEDITOR.replace( \'transcriptText\',{height:"770", readOnly:"true"});
+		</script>';
 
-            //If the transcript has not been completed make it editable and autosubmitting
-            echo '
-            <!-- Initialize the ckeditor textarea-->
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.config.customConfig = \'config.js\';
-                CKEDITOR.replace( \'transcriptText\',{height:"770",
-                on: {
-                    instanceReady: function() {
-                        // Autosave but no more frequent than 5 sec.
-                        var buffer = CKEDITOR.tools.eventsBuffer(300000, function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "update.php",
-                            data: {text: CKEDITOR.instances.transcriptText.getData(), sid: $("#sid").val(), task: $("#task").val(), filename: $("#filename").val(), page:$("#page").val(), action: "autosave" } ,
-                            success: function(msg){
-                                console.log("Autosave!");
-                            }
-                        }); // Ajax Call
-                    } );
-                    this.on( \'change\', buffer.input );
-                }
-            }});
-            </script>';
-        }
-        elseif ($transcriptComplete['completed'] == "TRUE"){
-            echo '
-            <!-- Initialize the ckeditor textarea-->
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.config.customConfig = \'config.js\';
-                CKEDITOR.replace( \'transcriptText\',{height:"770", readOnly:"true"});
-            </script>';
-        }
 
 
 
@@ -331,7 +307,7 @@ echo'
             prePage = parseInt(currentPage)-1;
 
             //Current page is adding 1 as a string not as a number
-            document.getElementById(\'transcriptFrame\').src=\'https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/\'+className+\'/\'+(prePage)+\'-\'+fileName;
+            document.getElementById(\'transcriptFrame\').src=\'pdfs/\'+className+\'/\'+(prePage)+\'-\'+fileName;
 
             //Decrease the value of the current page input
             document.getElementById(\'page\').value=prePage;
@@ -366,7 +342,7 @@ echo'
             nextPage = parseInt(currentPage)+1;
 
             //Current page is adding 1 as a string not as a number
-            document.getElementById(\'transcriptFrame\').src=\'https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/\'+className+\'/\'+(nextPage)+\'-\'+fileName;
+            document.getElementById(\'transcriptFrame\').src=\'pdfs/\'+className+\'/\'+(nextPage)+\'-\'+fileName;
 
             //Increase the value of the current page input
             document.getElementById(\'page\').value=nextPage;
@@ -389,7 +365,7 @@ echo'
                 async: false,
                 type: "POST",
                 url: "update.php",
-                data: {action: "textArea", sid: $("#sid").val(), task: $("#task").val(), filename: $("#filename").val(), page:$("#page").val(), text: CKEDITOR.instances.transcriptText.getData(), currentpage:currentPage } ,
+                data: {action: "textArea", sid: $("#sid").val(), task: $("#task").val(), filename: $("#filename").val(), page:$("#page").val(), currentpage:currentPage } ,
                 success: function(msg){
                     CKEDITOR.instances[\'transcriptText\'].setData(msg);
 console.log("Here");		    
