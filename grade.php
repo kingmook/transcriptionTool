@@ -145,7 +145,7 @@ $dbHandle = dbConnection();
                 <th>Complete</th>
                 <th>
 			        <!--<form action="">-->
-                    <form action="transcribe.php" method="POST">
+                    <form action="transcribeGrade.php" method="POST">
                     <input type="submit" name="markGrade" value="Review">
                 </th>';
 
@@ -155,7 +155,7 @@ $dbHandle = dbConnection();
                 <th>No Submission</th>
                 <th>'.$gradeResult['grade'].'</th>
                 <th>
-                    <form action="transcribe.php" method="POST">
+                    <form action="transcribeGrade.php" method="POST">
                     <input type="submit" name="markGrade" value="Review">
                 </th>';
             }

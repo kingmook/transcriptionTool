@@ -25,9 +25,9 @@ if ($_SESSION['role'] == "Instructor"){
 	$_SESSION['sid'] = $_POST['studentGrade'];	
 }	
 
-//Only assign pages if the user is a student
+//Only assign pages if the user is a student (Don't assign to non-students)
 //Assign required number of unique pages to student if not already done for the specific task
-if(!$pages = assignedPages($_POST['assignmentAid'], $_SESSION['sid'], $_POST['task'], $_SESSION['role'])){echo "No more pages to assign. Please contact the course Instructor.";}
+//if(!$pages = assignedPages($_POST['assignmentAid'], $_SESSION['sid'], $_POST['task'], $_SESSION['role'])){echo "No more pages to assign. Please contact the course Instructor.";}
 
 
 //Default starting pages
@@ -75,8 +75,6 @@ if($_SESSION['role'] == "Student"){
 			die;
 		}
 	}
-
-
 
     $task = 'task'.$_POST['task'].'Info';
 
@@ -169,7 +167,7 @@ echo'
             //Print out the iFrame for Task A & B
             if($_POST['task']=="A" || $_POST['task'] == "B") {
 
-                echo '<iframe id="transcriptFrame" height="100" width="100" src="pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
+                echo '<iframe id="transcriptFrame" height="100" width="100" src="https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
             }
             elseif($_POST['task'] == "C"){
                 //Output the initial diff between transcripts for the appropriate page
@@ -187,7 +185,7 @@ echo'
 
                 echo '</div>';
 
-                echo '<iframe id="transcriptFrame" class="transcriptFrameHalf" height="50" width="100" src="pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
+                echo '<iframe id="transcriptFrame" class="transcriptFrameHalf" height="50" width="100" src="https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/' . $ltiObject->info["context_id"] . '/' . $page . '-' . $pages['fileName'] . '"></iframe>';
 
             }
 
@@ -333,7 +331,7 @@ echo'
             prePage = parseInt(currentPage)-1;
 
             //Current page is adding 1 as a string not as a number
-            document.getElementById(\'transcriptFrame\').src=\'pdfs/\'+className+\'/\'+(prePage)+\'-\'+fileName;
+            document.getElementById(\'transcriptFrame\').src=\'https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/\'+className+\'/\'+(prePage)+\'-\'+fileName;
 
             //Decrease the value of the current page input
             document.getElementById(\'page\').value=prePage;
@@ -368,7 +366,7 @@ echo'
             nextPage = parseInt(currentPage)+1;
 
             //Current page is adding 1 as a string not as a number
-            document.getElementById(\'transcriptFrame\').src=\'pdfs/\'+className+\'/\'+(nextPage)+\'-\'+fileName;
+            document.getElementById(\'transcriptFrame\').src=\'https://cpi.brocku.ca/transcriptTool/v0_3/pdfs/\'+className+\'/\'+(nextPage)+\'-\'+fileName;
 
             //Increase the value of the current page input
             document.getElementById(\'page\').value=nextPage;

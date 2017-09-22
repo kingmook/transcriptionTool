@@ -476,6 +476,8 @@ function diffC($fileName, $page, $startPage){
 //Returns urls of successfully split pdfs
 function pdfSplit($urls, $className){
 
+	
+
     //Require the pdf manipulation library
     require_once("pdftk-toolkit/vendor/autoload.php");
 
@@ -484,6 +486,8 @@ function pdfSplit($urls, $className){
 
 	//Foreach URL do the following
 	foreach($urls as $url) {
+		
+		$url=trim($url);
 
         //Get the name of the file
         $lastSlash = strrpos($url, "/");
@@ -503,23 +507,27 @@ function pdfSplit($urls, $className){
         //Default status of our curl query will be false
         $data = FALSE;
 
-        //Actually execute the grab
+        //Actually execute the grab and throw an error if we get a curl error
         $data = curl_exec($ch);
-        curl_close($ch);
-
+        if(curl_error($ch))
+			{
+				echo 'error:' . curl_error($ch);
+			}		
+		curl_close($ch);
+		
         //If we got something back (the url resolves)
         if($data !== FALSE){
-
+		
 			//Check if the directory exists for this class and if not make it - TMP
 			if (!file_exists('tmp/'.$className.'')) {
 				mkdir('tmp/'.$className.'', 0777, true);
 			}
-
+			
             //Write it to a file
             $fp = fopen('tmp/'.$className.'/'.$fileName.'', "w");
             fwrite($fp, $data);
             fclose($fp);
-
+			
             //Check if it's actually a pdf
             if(mime_content_type('tmp/'.$className.'/'.$fileName.'') == "application/pdf") {
 
